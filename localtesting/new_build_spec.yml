@@ -1,5 +1,5 @@
 version: 0.1
-compo nent: build
+component: build
 timeoutInSeconds: 6000
 runAs: root
 shell: bash
