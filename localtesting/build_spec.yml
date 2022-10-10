@@ -65,7 +65,7 @@ steps:
       
       echo "signing setup complete"
       echo "Z====Z"
-      echo $OCI_RESOURCE_PRINCIPAL_VERSION
+      echo $OCI_CLI_AUTH
       echo "Z=====Z"
       echo $OCI_RESOURCE_PRINCIPAL_RPST
       echo "Z=====Z"
