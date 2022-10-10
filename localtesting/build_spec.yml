@@ -41,6 +41,28 @@ steps:
       export minor_version=135
       export OCI_RESOURCE_PRINCIPAL_VERSION=2.2
       echo "signing"
+      
+      yum remove python3
+      yum update -y
+      yum groupinstall -y 'Development Tools'
+      yum install -y gcc openssl-devel bzip2-devel libffi-devel
+      
+      wget https://www.openssl.org/source/openssl-1.1.1o.tar.gz
+      tar xzf openssl-1.1.1o.tar.gz -C /usr/share
+      /usr/share/openssl-1.1.1o/config --prefix=/usr/local/openssl --openssldir=/usr/local/openssl
+      make clean
+      make -j1 depend
+      make -j
+      make install_sw
+      wget https://www.python.org/ftp/python/3.10.7/Python-3.10.7.tgz
+      tar xzf Python-3.10.7.tgz -C /usr/share
+      /usr/share/Python-3.10.7/configure   -C --with-openssl=/usr/local/openssl --with-openssl-rpath=auto
+      make install
+      python3.10 -m pip install --upgrade pip
+      pip3.10 install -U setuptools
+      python3 --version
+      pip3 install oci_cli
+      
       oci os ns get
       testEnv1=`oci os ns get`
       echo "hello world"
