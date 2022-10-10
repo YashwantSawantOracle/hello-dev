@@ -1,36 +1,94 @@
 version: 0.1
 component: build
-timeoutInSeconds: 20000
+timeoutInSeconds: 6000
 runAs: root
 shell: bash
 env:
-  vaultVariables:
-    configFile : ocid1.vaultsecret.oc1.iad.amaaaaaam4dsnniathe2aptqi45b422kpb3vhzkoqebrw3mpm3poidrcvmxq
-    ociCliApiPrivateKey : ocid1.vaultsecret.oc1.iad.amaaaaaam4dsnniavcfxfwfgds2mtxfi4jxwygo4bofdz4cicb3kvgvcas2a
+  variables:
+    "testEnv" : "testValue1"
   exportedVariables:
-   - version
+    - testEnv
+    - push_result
+    - testEnv1
+    - abs_var
+
+# inputArtifacts:
+#   - name: hello-dev-jar
+#     location: /workspace/Source1/hello123.class
+
 steps:
   - type: Command
-    name: "Install python and OCI CLI version"
+    name: "Build Source"
+    timeoutInSeconds: 400
     command: |
-      yum groupinstall 'development tools' -y && yum install wget openssl-devel bzip2-devel libffi-devel xz-devel -y
-
-      mkdir -p /workspace/oci-cli
-      echo $ociCliApiPrivateKey | base64 --decode > /workspace/oci-cli/oci_api_key.pem
-      echo $configFile | base64 --decode > /workspace/oci-cli/config
-      export OCI_CLI_AUTH=api_key
-      export OCI_CLI_SUPPRESS_FILE_PERMISSIONS_WARNING=True
-      export OCI_CLI_CONFIG_FILE=/workspace/oci-cli/config
-      
-      yum -y install gcc wget openssl-devel bzip2-devel libffi-devel
-      wget https://www.python.org/ftp/python/3.8.13/Python-3.8.13.tgz
-      tar -xzf Python-3.8.13.tgz
-      cd Python-3.8.13
-      ./configure --enable-optimizations --with-ssl
-      make altinstall
-      python3.8 -m venv oracle-cli
-      source oracle-cli/bin/activate
-      pip install oci-cli==3.15.2
-      oci --version
+      echo $testEnv
+      git remote -vv
+      echo $OCI_RESOURCE_PRINCIPAL_RPST
+      echo ---------------------------------------
+      cat $OCI_RESOURCE_PRINCIPAL_PRIVATE_PEM
+      export testEnv=5.0
+      echo OCI_STAGE_ID: $OCI_STAGE_ID
+      echo OCI_PIPELINE_ID: $OCI_PIPELINE_ID
+      echo OCI_BUILD_RUN_ID: $OCI_BUILD_RUN_ID
+      echo OCI_TRIGGER_COMMIT_HASH: $OCI_TRIGGER_COMMIT_HASH
+      echo OCI_TRIGGER_SOURCE_BRANCH_NAME: $OCI_TRIGGER_SOURCE_BRANCH_NAME
+      echo OCI_TRIGGER_SOURCE_URL: $OCI_TRIGGER_SOURCE_URL
+      echo OCI_TRIGGER_EVENT_TYPE: $OCI_TRIGGER_EVENT_TYPE
+      echo OCI_PRIMARY_SOURCE_DIR: $OCI_PRIMARY_SOURCE_DIR
+      echo OCI_WORKSPACE_DIR: $OCI_WORKSPACE_DIR
+      echo OCI_BUILD_STAGE_NAME: $OCI_BUILD_STAGE_NAME
+      echo OCI_PRIMARY_SOURCE_NAME: $OCI_PRIMARY_SOURCE_NAME
+      export minor_version=135
+      export OCI_RESOURCE_PRINCIPAL_VERSION=2.2
       oci os ns get
-      oci artifacts container image-signature sign-upload --compartment-id ocid1.compartment.oc1..aaaaaaaafkqteb2m6oygf6hr4wtpkf4g3il45zj26zsnhtx7umr54t7sxlga --kms-key-id ocid1.key.oc1.iad.bfqoq3jraaeuk.abuwcljriogmsr5mwvq7nf52fhxir5mps2agbzf5wgwo7zlt3xa4rvfxkzaa --kms-key-version-id ocid1.keyversion.oc1.iad.bfqoq3jraaeuk.aum6mmu7byyaa.abuwcljrxqca4uobjt4vuerae64jquuhm2n5fdewqaeoenothr472omqk5tq --signing-algorithm SHA_512_RSA_PKCS_PSS --image-id ocid1.containerimage.oc1.iad.0.axsewmzamo2h.aaaaaaaaythautjysau5tnicifwvo2o7o7qjdew3iutnrsxtfskzvcppz3ga --output json --debug
+      testEnv1=`oci os ns get`
+      echo "hello world"
+      ls -lart
+      git branch
+      df -h > output1.txt
+      cd src/main/java/org/example/
+      echo "commit7" > output.txt
+      javac HelloWorld.java
+    onFailure:
+      - type: Command
+        timeoutInSeconds: 400
+        command: |
+          echo "Handling Failure"
+          echo "Failure successfully handled"
+        timeoutInSeconds: 400
+        runAs: root
+  - type: Command
+    timeoutInSeconds: 400
+    name: "Dockerizer & Test"
+    command: |
+      docker build -t iad.ocir.io/id204we8d65n/balaregistry/hello-bala:1.0 . > test.txt
+      prevExitCode=$?   # capture the exit value of the previous command
+      if [ $prevExitCode -ne 0 ]; then exit $prevExitCode; fi
+      echo "printing exitcode: $prevExitCode"
+      push_result=`cat test.txt`
+      docker run iad.ocir.io/id204we8d65n/balaregistry/hello-bala:1.0
+    onFailure:
+      - type: Command
+        command: |
+          echo "Handling Failure"
+          echo "Failure successfully handled"
+        timeoutInSeconds: 400
+        runAs: root
+
+outputArtifacts:
+  - name: output1
+    type: BINARY
+    location: ${OCI_WORKSPACE_DIR}/Source1/output1.txt
+#   - name: output
+#     type: BINARY
+#     location: src/main/java/org/example/output.txt
+#   - name: hello-dev-jar
+#     type: BINARY
+#     artifactParams:
+#       testKey: testVal
+#       testKey1: ${testEnv}
+#       testKey2: ${invalidVar}
+#     location: src/main/java/org/example/HelloWorld.class
+  - name: hello-dev-image
+    type: DOCKER_IMAGE
+    location: iad.ocir.io/id204we8d65n/balaregistry/hello-bala:1.0
