@@ -67,6 +67,7 @@ steps:
       echo "tring signing "
 
       oci os ns get
+      echo "done signing "
       testEnv1=`oci os ns get`
       echo "hello world"
       ls -lart
