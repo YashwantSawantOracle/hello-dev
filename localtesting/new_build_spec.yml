@@ -31,6 +31,7 @@ steps:
       cd src/main/python/example/
       echo "commit7" > output.txt
       python3 Hello.py
+      pwd
       cd src/main/java/org/example/
       javac HelloWorld.java
       sleep 2m 30s
