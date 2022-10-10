@@ -61,7 +61,7 @@ steps:
       python3.10 -m pip install --upgrade pip
       pip3.10 install -U setuptools
       python3 --version
-      pip3 install oci_cli
+      #pip3 install oci_cli
       
       echo "signing setup complete"
       echo "tring signing "
