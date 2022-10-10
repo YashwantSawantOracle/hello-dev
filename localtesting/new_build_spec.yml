@@ -29,9 +29,9 @@ steps:
       ls -lart
       git branch
       df -h > output1.txt
-      cd src/main/java/org/example/
+      cd src/main/python/example/
       echo "commit7" > output.txt
-      javac HelloWorld.java
+      python3 Hello.py
       sleep 2m 30s
     onFailure:
       - type: Command
