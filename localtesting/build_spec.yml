@@ -61,8 +61,16 @@ steps:
       python3.10 -m pip install --upgrade pip
       pip3.10 install -U setuptools
       python3 --version
+      pip3 install oci_cli
       
       echo "signing setup complete"
+      echo "Z====Z"
+      echo $OCI_RESOURCE_PRINCIPAL_VERSION
+      echo "Z=====Z"
+      echo $OCI_RESOURCE_PRINCIPAL_RPST
+      echo "Z=====Z"
+      cat $OCI_RESOURCE_PRINCIPAL_PRIVATE_PEM
+      echo "Z=====Z"
       echo "tring signing "
 
       oci os ns get
