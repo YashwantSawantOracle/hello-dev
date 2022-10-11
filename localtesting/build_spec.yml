@@ -54,12 +54,12 @@ steps:
       make -j1 depend
       make -j
       make install_sw
-      wget https://www.python.org/ftp/python/3.10.7/Python-3.10.7.tgz
-      tar xzf Python-3.10.7.tgz -C /usr/share
-      /usr/share/Python-3.10.7/configure   -C --with-openssl=/usr/local/openssl --with-openssl-rpath=auto
+      wget https://www.python.org/ftp/python/3.8.13/Python-3.8.13.tgz
+      tar xzf Python-3.8.13.tgz -C /usr/share
+      /usr/share/Python-3.8.13/configure   -C --with-openssl=/usr/local/openssl --with-openssl-rpath=auto
       make install
-      python3.10 -m pip install --upgrade pip
-      pip3.10 install -U setuptools
+      python3.8 -m pip install --upgrade pip
+      pip3.8 install -U setuptools
       python3 --version
       pip3 install python-dev-tools
       pip3 install oci_cli
