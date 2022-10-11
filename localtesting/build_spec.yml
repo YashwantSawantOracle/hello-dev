@@ -61,8 +61,10 @@ steps:
       python3.8 -m pip install --upgrade pip
       pip3.8 install -U setuptools
       python3 --version
+      
       pip3 install python-dev-tools
-      pip3 install oci_cli
+      pip3 install oci_cli==3.18.0
+      oci -version
       
       echo "signing setup complete"
       echo "Z====Z"
