@@ -1,6 +1,6 @@
 version: 0.1
 component: build
-timeo. utInSeconds: 12000
+timeoutInSeconds: 12000
 runAs: root
 shell: bash
 env:
