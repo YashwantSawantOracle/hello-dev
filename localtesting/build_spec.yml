@@ -63,7 +63,10 @@ steps:
       python3 --version
       
       pip3 install python-dev-tools
-      bash -c "$(curl -L ${SETUPS_HOME}/oci_cli/install.sh)" -s --accept-all-defaults
+      echo "OCI install"
+      bash -c "$(curl -L https://raw.githubusercontent.com/oracle/oci-cli/master/scripts/install/install.sh)" -s --accept-all-defaults
+      echo "OCI install done"
+
       oci -version
       
       echo "signing setup complete"
