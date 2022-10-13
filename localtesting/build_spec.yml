@@ -56,7 +56,7 @@ steps:
       make install_sw
       wget https://www.python.org/ftp/python/3.8.13/Python-3.8.13.tgz
       tar xzf Python-3.8.13.tgz -C /usr/share
-      /usr/share/Python-3.8.13/configure   -C --with-openssl=/usr/local/openssl --with-openssl-rpath=auto
+      /usr/share/Python-3.8.13/configure  --enable-optimizations --with-ssl
       make install
       python3.8 -m pip install --upgrade pip
       pip3.8 install -U setuptools
