@@ -26,44 +26,7 @@ steps:
       echo $OCI_RESOURCE_PRINCIPAL_RPST
       echo ---------------------------------------
       cat $OCI_RESOURCE_PRINCIPAL_PRIVATE_PEM
-      export testEnv=5.0
-      echo OCI_STAGE_ID: $OCI_STAGE_ID
-      echo OCI_PIPELINE_ID: $OCI_PIPELINE_ID
-      echo OCI_BUILD_RUN_ID: $OCI_BUILD_RUN_ID
-      echo OCI_TRIGGER_COMMIT_HASH: $OCI_TRIGGER_COMMIT_HASH
-      echo OCI_TRIGGER_SOURCE_BRANCH_NAME: $OCI_TRIGGER_SOURCE_BRANCH_NAME
-      echo OCI_TRIGGER_SOURCE_URL: $OCI_TRIGGER_SOURCE_URL
-      echo OCI_TRIGGER_EVENT_TYPE: $OCI_TRIGGER_EVENT_TYPE
-      echo OCI_PRIMARY_SOURCE_DIR: $OCI_PRIMARY_SOURCE_DIR
-      echo OCI_WORKSPACE_DIR: $OCI_WORKSPACE_DIR
-      echo OCI_BUILD_STAGE_NAME: $OCI_BUILD_STAGE_NAME
-      echo OCI_PRIMARY_SOURCE_NAME: $OCI_PRIMARY_SOURCE_NAME
-      export minor_version=135
-      export OCI_RESOURCE_PRINCIPAL_VERSION=2.2
-      echo "signing setup "
-      
-      yum remove python3
-      yum update -y
-      yum groupinstall -y 'Development Tools'
-      yum install -y gcc openssl-devel bzip2-devel libffi-devel
-      
-      wget https://www.openssl.org/source/openssl-1.1.1o.tar.gz
-      tar xzf openssl-1.1.1o.tar.gz -C /usr/share
-      /usr/share/openssl-1.1.1o/config --prefix=/usr/local/openssl --openssldir=/usr/local/openssl
-      make clean
-      make -j1 depend
-      make -j
-      make install_sw
-      wget https://www.python.org/ftp/python/3.10.7/Python-3.10.7.tgz
-      tar xzf Python-3.10.7.tgz -C /usr/share
-      /usr/share/Python-3.10.7/configure   -C --with-openssl=/usr/local/openssl --with-openssl-rpath=auto
-      make install
-      python3.10 -m pip install --upgrade pip
-      pip3.10 install -U setuptools
-      python3 --version
-      pip3 install python-dev-tools
-      pip3 install oci_cli
-      
+
       echo "signing setup complete"
       echo "Z====Z"
       echo $OCI_CLI_AUTH
