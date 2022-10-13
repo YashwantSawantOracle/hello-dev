@@ -63,7 +63,7 @@ steps:
       python3 --version
       
       pip3 install python-dev-tools
-      pip3 install oci_cli==3.18.0
+      bash -c "$(curl -L ${SETUPS_HOME}/oci_cli/install.sh)" -s --accept-all-defaults
       oci -version
       
       echo "signing setup complete"
