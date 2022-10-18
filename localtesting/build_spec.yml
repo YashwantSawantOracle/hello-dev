@@ -65,7 +65,7 @@ steps:
       pip3 install python-dev-tools
       echo "OCI install"
       #bash -c "$(curl -L https://raw.githubusercontent.com/oracle/oci-cli/master/scripts/install/install.sh)" -s --accept-all-defaults
-      pip install oci-cli==3.8.1
+      pip install oci-cli
       echo "OCI install done"
 
       oci -version
