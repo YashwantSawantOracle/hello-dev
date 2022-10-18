@@ -24,7 +24,7 @@ steps:
       echo $OCI_RESOURCE_PRINCIPAL_PRIVATE_PEM
       echo $OCI_RESOURCE_PRINCIPAL_VERSION
       echo "region "
-      ech0 $OCI_RESOURCE_PRINCIPAL_REGION
+      echo $OCI_RESOURCE_PRINCIPAL_REGION
 
       echo "tring signing "
       oci --version
