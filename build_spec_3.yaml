@@ -1,0 +1,45 @@
+version: 0.1
+component: build
+timeoutInSeconds: 6000
+runAs: root
+shell: bash
+env:
+  variables:
+    "testEnv" : "testValue"
+
+steps:
+  - type: Command
+    name: "Build Source"
+    command: |
+      cat /workspace/script/Step0.sh
+      echo $testEnv
+      mvn clean test
+      mvn clean package
+    onFailure:
+      - type: Command
+        command: |
+          echo "Handling Failure"
+          echo "Failure successfully handled"
+        timeoutInSeconds: 400
+        runAs: root
+  - type: Command
+    name: "Dockerizer & Test"
+    command: |
+      docker build -t hello-dev .
+      prevExitCode=$?   # capture the exit value of the previous command
+      if [ $prevExitCode -ne 0 ]; then exit prevExitCode fi
+      echo "printing exitcode: $prevExitCode"
+      docker run hello-dev
+    onFailure:
+      - type: Command
+        command: |
+          echo "Handling Failure"
+          echo "Failure successfully handled"
+        timeoutInSeconds: 400
+        runAs: root
+
+artifacts:
+  - name: hello-dev-jar
+    type: BINARY
+    files:
+      - target/hello-dev-1.0-SNAPSHOT.jar
