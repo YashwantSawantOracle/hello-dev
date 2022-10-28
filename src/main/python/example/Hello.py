@@ -3,5 +3,5 @@ import oci
 print('Hello, world!')
 print(os.environ)
 print(oci.regions.REALMS)
-print(oci.regions.REALMS['oc1'])
-
+oci.regions.REALMS[None] = 'oraclecloud.com'
+print(oci.regions.REALMS)
