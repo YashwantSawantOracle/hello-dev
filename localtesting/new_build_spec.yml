@@ -40,6 +40,7 @@ steps:
       pip3 install oci-cli
       oci -version
       export OCI_DEFAULT_REALM=oraclecloud.com
+      mkdir -p /workspace/oci-cli
       touch /workspace/oci-cli/config
       echo "W0RFRkFVTFRdCnVzZXI9b2NpZDEudXNlci5vYzEuLmFhYWFhYWFhNmdjaWpxbjJ3aHl2MzNqYXU2cW9pNGd1dml3N2g1bW5mdGZmZG1tbDU1N3RvYXVmb25jcQpmaW5nZXJwcmludD1hMTo0YzpkZDo3YTpmMDo5ZTplNzo0ZjplYjplNjo5MTo1ZjphYTowMzpmZDo5OAp0ZW5hbmN5PW9jaWQxLnRlbmFuY3kub2MxLi5hYWFhYWFhYWdrYnpnZzZscHpyZjQ3eHp5NHJqb3hnNGRlNm5jZmlxMnJuY21qaXVqdnkyaGpneHZ6aXEKcmVnaW9uPXVzLWFzaGJ1cm4tMQprZXlfZmlsZT0vd29ya3NwYWNlL29jaS1jbGkvb2NpX2FwaV9rZXkucGVtCnBhc3NfcGhyYXNlPXBhc3N3b3JkMQo=" > /workspace/oci-cli/config
       export OCI_CLI_CONFIG_FILE=/workspace/oci-cli/config
