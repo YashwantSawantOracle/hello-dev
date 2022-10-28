@@ -34,7 +34,13 @@ steps:
       echo "commit7" > output.txt
       echo "oci"
       oci -version
+      python3 -m venv oracle-cli
+      source oracle-cli/bin/activate
+      pip3 install oci-cli
+      oci -version
+
       python3 Hello.py
+      
       pwd
       cd /workspace/Source/src/main/java/org/example/
       javac HelloWorld.java
