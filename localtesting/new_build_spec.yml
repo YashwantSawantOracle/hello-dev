@@ -40,6 +40,8 @@ steps:
       source oracle-cli/bin/activate
       pip3 install oci-cli
       oci -version
+      export $OCI_DEFAULT_REALM=oraclecloud.com
+
       echo "realm"
       echo $OCI_DEFAULT_REALM
       python3 Hello.py
