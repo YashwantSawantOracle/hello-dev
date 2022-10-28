@@ -24,6 +24,7 @@ steps:
       echo OCI_TRIGGER_COMMIT_HASH: $OCI_TRIGGER_COMMIT_HASH
       echo OCI_TRIGGER_SOURCE_BRANCH_NAME: $OCI_TRIGGER_SOURCE_BRANCH_NAME
       echo OCI_WORKSPACE_DIR: $OCI_WORKSPACE_DIR
+      cat /workspace/script/rpst-private.pem
       export minor_version=135
       ls -lart
       git branch
