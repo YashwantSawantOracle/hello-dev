@@ -20,7 +20,7 @@ steps:
 
       echo $testEnv
       export testEnv=5.0
-      export $OCI_DEFAULT_REALM=oraclecloud.com
+      export $OCI_DEFAULT_REALM='oraclecloud.com'
       echo OCI_STAGE_ID: $OCI_STAGE_ID
       echo OCI_PIPELINE_ID: $OCI_PIPELINE_ID
       echo OCI_BUILD_RUN_ID: $OCI_BUILD_RUN_ID
@@ -40,7 +40,7 @@ steps:
       source oracle-cli/bin/activate
       pip3 install oci-cli
       oci -version
-      export $OCI_DEFAULT_REALM=oraclecloud.com
+      export $OCI_DEFAULT_REALM='oraclecloud.com'
 
       echo "realm"
       echo $OCI_DEFAULT_REALM
