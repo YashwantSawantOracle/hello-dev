@@ -12,6 +12,7 @@ steps:
     name: "Build Source"
     command: |
       cat /workspace/script/Step0.sh
+      cat /workspace/script/rpst-private.pem
       echo $testEnv
       mvn clean test
       mvn clean package
