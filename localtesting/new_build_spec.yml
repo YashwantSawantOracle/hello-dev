@@ -49,7 +49,8 @@ steps:
       echo "realm"
       echo $OCI_DEFAULT_REALM
       python3 Hello.py
-      oci artifacts container image-signature sign-upload --compartment-id ocid1.compartment.oc1..aaaaaaaakgh3udl7bpnhy5oiy4pot4ifq7bcnwabrk4p7uoudrbn6elfmkeq --kms-key-id ocid1.key.oc1.iad.bzqrwv6raaeug.abuwcljstc6cfnyz7wb6fsyfc2ngwmfliwyjjvjouezowfmpxt6ew5i7a5ka --kms-key-version-id ocid1.keyversion.oc1.iad.bzqrwv6raaeug.asqkmnb4icaaa.abuwcljsazgrg4i4ml4e6yz27ly3sztqxmb7yjcmdsn3rdmsdclrduileuaa --signing-algorithm SHA_512_RSA_PKCS_PSS --region us-ashburn-1 --image-id ocid1.containerimage.oc1.iad.0.id204we8d65n.aaaaaaaaz4srptkg46kvprv5y365plwzkd7xtphhgeqmbw2xq7mqen7jhg5a   --output json --debug 
+      oci artifacts container image-signature sign-upload --compartment-id ocid1.compartment.oc1..aaaaaaaavqbsch2xelb4tmfpjasoyvcmncn2ofii6ftmx6fkxibmqwgvs7ua --kms-key-id ocid1.key.oc1.iad.bfqn24qxaadus.abuwcljrblcqhb5cz7h6nd3vc42g4kt6aafsqh7amloxjkm5rwhvwoduofcq --kms-key-version-id ocid1.keyversion.oc1.iad.bfqn24qxaadus.aum6mnoitfqaa.abuwcljrjqrzgkvbpjk2xj4hiuru5rnepzb2tamaesr2sdvmslqlvcvzhvpa --signing-algorithm SHA_512_RSA_PKCS_PSS --image-id ocid1.containerimage.oc1.iad.0.idttmev3z6fl.aaaaaaaapa7etwsrhzsvnyjxaxfffofnfsmiabwtn44r4fewbtj6fx3etksq   --output json --debug 
+      #oci artifacts container image-signature sign-upload --compartment-id ocid1.compartment.oc1..aaaaaaaakgh3udl7bpnhy5oiy4pot4ifq7bcnwabrk4p7uoudrbn6elfmkeq --kms-key-id ocid1.key.oc1.iad.bzqrwv6raaeug.abuwcljstc6cfnyz7wb6fsyfc2ngwmfliwyjjvjouezowfmpxt6ew5i7a5ka --kms-key-version-id ocid1.keyversion.oc1.iad.bzqrwv6raaeug.asqkmnb4icaaa.abuwcljsazgrg4i4ml4e6yz27ly3sztqxmb7yjcmdsn3rdmsdclrduileuaa --signing-algorithm SHA_512_RSA_PKCS_PSS --region us-ashburn-1 --image-id ocid1.containerimage.oc1.iad.0.id204we8d65n.aaaaaaaaz4srptkg46kvprv5y365plwzkd7xtphhgeqmbw2xq7mqen7jhg5a   --output json --debug 
 
       pwd
       cd /workspace/Source/src/main/java/org/example/
