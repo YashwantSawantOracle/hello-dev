@@ -70,39 +70,9 @@ steps:
         runAs: root
  
 
-  - type: Command
-    timeoutInSeconds: 400
-    name: "Dockerizer & Test"
-    command: |
-      docker build -t iad.ocir.io/id204we8d65n/balaregistry/hello-bala:1.0 . > test.txt
-      prevExitCode=$?   # capture the exit value of the previous command
-      if [ $prevExitCode -ne 0 ]; then exit $prevExitCode; fi
-      echo "printing exitcode: $prevExitCode"
-      push_result=`cat test.txt`
-      docker run iad.ocir.io/id204we8d65n/balaregistry/hello-bala:1.0
-    onFailure:
-      - type: Command
-        command: |
-          echo "Handling Failure"
-          echo "Failure successfully handled"
-        timeoutInSeconds: 400
-        runAs: root
-
 outputArtifacts:
   - name: output1
     type: BINARY
     location: ${OCI_WORKSPACE_DIR}/Source1/output1.txt
-#   - name: output
-#     type: BINARY
-#     location: src/main/java/org/example/output.txt
-#   - name: hello-dev-jar
-#     type: BINARY
-#     artifactParams:
-#       testKey: testVal
-#       testKey1: ${testEnv}
-#       testKey2: ${invalidVar}
-#     location: src/main/java/org/example/HelloWorld.class
-  - name: hello-dev-image
-    type: DOCKER_IMAGE
-    location: iad.ocir.io/id204we8d65n/balaregistry/hello-bala:1.0
+
   
