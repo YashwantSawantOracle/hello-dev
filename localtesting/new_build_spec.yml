@@ -75,6 +75,6 @@ steps:
 outputArtifacts:
   - name: output1
     type: BINARY
-    location: ${OCI_WORKSPACE_DIR}/Source1/output1.txt
+    location: /workspace/masterDev/output1.txt
 
   
