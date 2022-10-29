@@ -37,7 +37,7 @@ steps:
       pwd
       cd /workspace/Source/src/main/java/org/example/
       javac HelloWorld.java
-      
+      df -h > output1.txt
       python3 -m venv oracle-cli
       source oracle-cli/bin/activate
       pip3 install oci-cli
