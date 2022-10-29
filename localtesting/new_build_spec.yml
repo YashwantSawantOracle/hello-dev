@@ -28,6 +28,8 @@ steps:
       export minor_version=135
       ls -lart
       git branch
+      pwd
+      echo "pwd"
       df -h > output1.txt
       cd src/main/python/example/
       echo "commit7" > output.txt
