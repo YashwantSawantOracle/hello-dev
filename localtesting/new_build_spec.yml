@@ -49,7 +49,8 @@ steps:
       touch /workspace/oci-cli/config
       echo "W0RFRkFVTFRdCnJlZ2lvbj11cy1hc2hidXJuLTEKcGFzc19waHJhc2U9cGFzc3dvcmQx"  | base64 --decode > /workspace/oci-cli/config
       export OCI_CLI_CONFIG_FILE=/workspace/oci-cli/config
-
+      echo "region"
+      echo $OCI_RESOURCE_PRINCIPAL_REGION
       echo "realm"
       echo $OCI_DEFAULT_REALM
       python3 Hello.py
