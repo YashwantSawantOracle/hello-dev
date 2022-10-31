@@ -40,11 +40,8 @@ steps:
       cd /workspace/Source/src/main/java/org/example/
       javac HelloWorld.java
       df -h > output1.txt
-      python3 -m venv oracle-cli
-      source oracle-cli/bin/activate
-      pip3 install oci-cli
+      
       oci -version
-      export OCI_DEFAULT_REALM=oraclecloud.com
       mkdir -p /workspace/oci-cli
       touch /workspace/oci-cli/config
       echo "W0RFRkFVTFRdCnJlZ2lvbj11cy1hc2hidXJuLTEKcGFzc19waHJhc2U9cGFzc3dvcmQx"  | base64 --decode > /workspace/oci-cli/config
@@ -53,7 +50,7 @@ steps:
       echo $OCI_RESOURCE_PRINCIPAL_REGION
       echo "realm"
       echo $OCI_DEFAULT_REALM
-      python3 Hello.py
+      python3 --version
       echo "auth type"
       echo $OCI_CLI_AUTH
       oci os ns get
