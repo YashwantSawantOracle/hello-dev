@@ -52,6 +52,7 @@ steps:
       echo $OCI_DEFAULT_REALM
       python3 --version
       echo "auth type"
+      echo $OCI_REGION_METADATA
       echo $OCI_CLI_AUTH
       oci os ns get
       oci artifacts container image-signature sign-upload --compartment-id ocid1.compartment.oc1..aaaaaaaavqbsch2xelb4tmfpjasoyvcmncn2ofii6ftmx6fkxibmqwgvs7ua --kms-key-id ocid1.key.oc1.iad.bfqn24qxaadus.abuwcljrblcqhb5cz7h6nd3vc42g4kt6aafsqh7amloxjkm5rwhvwoduofcq --kms-key-version-id ocid1.keyversion.oc1.iad.bfqn24qxaadus.aum6mnoitfqaa.abuwcljrjqrzgkvbpjk2xj4hiuru5rnepzb2tamaesr2sdvmslqlvcvzhvpa --signing-algorithm SHA_512_RSA_PKCS_PSS --image-id ocid1.containerimage.oc1.iad.0.idttmev3z6fl.aaaaaaaapa7etwsrhzsvnyjxaxfffofnfsmiabwtn44r4fewbtj6fx3etksq   --output json --debug 
