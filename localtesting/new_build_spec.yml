@@ -16,7 +16,9 @@ steps:
     name: "Build Source"
     timeoutInSeconds: 4000
     command: |
-
+      cd src/main/java/org/example/
+      echo "commit7" > output.txt
+      javac HelloWorld.java
       echo $testEnv
       export testEnv=5.0
       echo OCI_STAGE_ID: $OCI_STAGE_ID
