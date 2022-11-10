@@ -19,6 +19,7 @@ steps:
       cd src/main/java/org/example/
       echo "commit7" > output.txt
       javac HelloWorld.java
+      ls
       echo $testEnv
       export testEnv=5.0
       echo OCI_STAGE_ID: $OCI_STAGE_ID
