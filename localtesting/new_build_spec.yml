@@ -20,6 +20,7 @@ steps:
       echo "commit7" > output.txt
       javac HelloWorld.java
       ls
+      java HelloWorld
       echo $testEnv
       export testEnv=5.0
       echo OCI_STAGE_ID: $OCI_STAGE_ID
